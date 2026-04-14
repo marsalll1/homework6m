@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.venv/
+
+# Django
+*.log
+db.sqlite3
+media/
+
+# Environment variables
+.env
+
+# VS Code / PyCharm
+.vscode/
+.idea/
+
+# MacOS
+.DS_Store
+
+# Static files (если будешь использовать collectstatic)
+staticfiles/
+
+# Migrations (опционально, но лучше оставить)
+# users/migrations/
+# products/migrations/
+
+# pytest / coverage
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
+
+# pycache folders
+**/__pycache__/
