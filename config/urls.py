@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from users.views import RegisterView, LoginView, GoogleLoginView
+from users.views import RegisterView, LoginView, GoogleLoginView, VerifyCodeView
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
@@ -31,6 +31,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view()),
 
     path('products/', include('products.urls')),
-
+    
+    path('verify-code/', VerifyCodeView.as_view()),
     path('swagger/', schema_view.with_ui('swagger')),
 ]
