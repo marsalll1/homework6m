@@ -9,15 +9,22 @@ from .google_auth import google_auth
 from .utils import save_code, verify_code
 
 
+from .tasks import log_user_registration, send_email_task
+
+
 class RegisterView(CreateAPIView):
     serializer_class = RegisterSerializer
 
     def perform_create(self, serializer):
         user = serializer.save()
 
+        
         code = save_code(user.id)
+        print("CONFIRM CODE:", code)
 
-        print("CONFIRM CODE:", code)  # вместо SMS/email
+        
+        log_user_registration.delay(user.id)
+        send_email_task.delay(user.id)
 
 
 class LoginView(TokenObtainPairView):
@@ -43,4 +50,3 @@ class VerifyCodeView(APIView):
             {"error": "Неверный или истёк код"},
             status=status.HTTP_400_BAD_REQUEST
         )
-    

@@ -137,3 +137,17 @@ CACHES = {
         }
     }
 }
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'cleanup-users-every-day': {
+        'task': 'users.tasks.cleanup_inactive_users',
+        'schedule': crontab(hour=0, minute=0),
+    },
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

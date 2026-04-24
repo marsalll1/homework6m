@@ -26,12 +26,12 @@ urlpatterns = [
     path('register/', RegisterView.as_view()),
     path('login/', LoginView.as_view()),
     path('google-login/', GoogleLoginView.as_view()),
+    path('verify-code/', VerifyCodeView.as_view()),
 
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
 
     path('products/', include('products.urls')),
-    
-    path('verify-code/', VerifyCodeView.as_view()),
+
     path('swagger/', schema_view.with_ui('swagger')),
 ]
